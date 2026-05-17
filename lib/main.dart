@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:latihan_flutter/latihan_images.dart';
 import 'package:latihan_flutter/tugas_flutter_1.dart';
 import 'package:latihan_flutter/tugas_flutter_2.dart';
+import 'package:latihan_flutter/tugas_flutter_3.dart';
+import 'package:latihan_flutter/tugas_flutter_4.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TugasFlutter2(),
+      home: const TugasFlutter4(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
