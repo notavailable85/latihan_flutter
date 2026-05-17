@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/latihan_column.dart';
-import 'package:latihan_flutter/latihan_expanded.dart';
 import 'package:latihan_flutter/latihan_images.dart';
 import 'package:latihan_flutter/tugas_flutter_1.dart';
+import 'package:latihan_flutter/tugas_flutter_2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LatihanExpanded(),
+      home: const TugasFlutter2(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
