@@ -35,6 +35,7 @@ class LatihanColumn extends StatelessWidget {
               spacing: 5,
               children: [
                 Icon(Icons.woman, size: 30),
+
                 Text("Woman", style: TextStyle(fontSize: 16)),
               ],
             ),
