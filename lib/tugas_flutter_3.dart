@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class TugasFlutter3 extends StatelessWidget {
   const TugasFlutter3({super.key});
@@ -7,8 +8,13 @@ class TugasFlutter3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Registrasi & Katalog"),
+        title: const Text(
+          "Registrasi & Katalog",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
 
       // AREA SCROLL UTAMA
@@ -21,6 +27,8 @@ class TugasFlutter3 extends StatelessWidget {
             // TEXTFIELD 1
             const TextField(
               decoration: InputDecoration(
+                suffixIcon: Icon(Icons.person, color: Colors.blue),
+
                 labelText: "Nama Lengkap",
                 border: OutlineInputBorder(),
               ),
@@ -31,6 +39,8 @@ class TugasFlutter3 extends StatelessWidget {
             // TEXTFIELD 2
             const TextField(
               decoration: InputDecoration(
+                suffixIcon: Icon(Icons.email, color: Colors.blue),
+
                 labelText: "Email",
                 border: OutlineInputBorder(),
               ),
@@ -41,6 +51,7 @@ class TugasFlutter3 extends StatelessWidget {
             // TEXTFIELD 3
             const TextField(
               decoration: InputDecoration(
+                suffixIcon: Icon(Icons.phone, color: Colors.blue),
                 labelText: "No. HP",
                 border: OutlineInputBorder(),
               ),
@@ -82,20 +93,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/safety_glass.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 1",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Safety Glasses",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),
@@ -107,20 +128,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/helm_safety.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 2",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Safety Helmet",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),
@@ -132,20 +163,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/safety_shoes.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 3",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Safety Shoes",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),
@@ -157,20 +198,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/body_harness.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 4",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Body Harness",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),
@@ -182,20 +233,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/safety_gloves.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 5",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Safety Gloves",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),
@@ -207,20 +268,30 @@ class TugasFlutter3 extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/safety_vest.png"),
+                        ),
                       ),
                     ),
 
-                    const Positioned(
-                      bottom: 10,
+                    Positioned(
+                      bottom: 0,
                       left: 10,
-                      child: Text(
-                        "Item 6",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      child: Center(
+                        child: Container(
+                          height: 25,
+                          width: 155,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[100],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "Safety Vest",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
                         ),
                       ),
                     ),

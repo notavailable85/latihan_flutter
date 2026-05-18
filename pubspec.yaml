@@ -62,6 +62,16 @@ flutter:
   - assets/images/minion.png
   - assets/images/flat_star.jpg
   - assets/images/logo_safenesia.png
+  # APD
+  - assets/images/apar.png
+  - assets/images/body_harness.png
+  - assets/images/first_aid_box.png
+  - assets/images/helm_safety.png
+  - assets/images/safety_earmuff.png
+  - assets/images/safety_glass.png
+  - assets/images/safety_gloves.png
+  - assets/images/safety_shoes.png
+  - assets/images/safety_vest.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
