@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TugasFlutter4(),
+      home: const TugasFlutter5(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
