@@ -86,7 +86,7 @@ class TugasFlutter4 extends StatelessWidget {
             title: const Text("Andi Rahmat"),
             subtitle: const Text("Status: Aktif"),
             trailing: const Icon(Icons.arrow_forward_ios),
-            tileColor: Colors.blue.shade50,
+            tileColor: Colors.blue[50],
           ),
 
           const SizedBox(height: 10),
@@ -96,7 +96,7 @@ class TugasFlutter4 extends StatelessWidget {
             title: const Text("Budi Santoso"),
             subtitle: const Text("Status: Non-Aktif"),
             trailing: const Icon(Icons.arrow_forward_ios),
-            tileColor: Colors.red.shade50,
+            tileColor: Colors.blue[50],
           ),
 
           const SizedBox(height: 10),
@@ -106,7 +106,7 @@ class TugasFlutter4 extends StatelessWidget {
             title: const Text("Citra Natalia"),
             subtitle: const Text("Status: Aktif"),
             trailing: const Icon(Icons.arrow_forward_ios),
-            tileColor: Colors.green.shade50,
+            tileColor: Colors.blue[50],
           ),
 
           const SizedBox(height: 10),
@@ -116,7 +116,7 @@ class TugasFlutter4 extends StatelessWidget {
             title: const Text("Dewi Lestari"),
             subtitle: const Text("Status: Pending"),
             trailing: const Icon(Icons.arrow_forward_ios),
-            tileColor: Colors.orange.shade50,
+            tileColor: Colors.blue[50],
           ),
 
           const SizedBox(height: 10),
@@ -126,7 +126,7 @@ class TugasFlutter4 extends StatelessWidget {
             title: const Text("Eko Prasetyo"),
             subtitle: const Text("Status: Aktif"),
             trailing: const Icon(Icons.arrow_forward_ios),
-            tileColor: Colors.purple.shade50,
+            tileColor: Colors.blue[50],
           ),
         ],
       ),
