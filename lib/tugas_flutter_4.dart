@@ -7,8 +7,13 @@ class TugasFlutter4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Manajemen Data Pelanggan"),
+        title: const Text(
+          "Manajemen Data Pelanggan",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
 
       // ROOT WIDGET HARUS LISTVIEW
@@ -23,7 +28,8 @@ class TugasFlutter4 extends StatelessWidget {
           // TEXTFIELD 1
           const TextField(
             decoration: InputDecoration(
-              labelText: "Input Nama",
+              prefixIcon: Icon(Icons.person),
+              labelText: "Nama",
               border: OutlineInputBorder(),
             ),
           ),
@@ -33,7 +39,8 @@ class TugasFlutter4 extends StatelessWidget {
           // TEXTFIELD 2
           const TextField(
             decoration: InputDecoration(
-              labelText: "Input Kontak",
+              prefixIcon: Icon(Icons.phone),
+              labelText: "Nomor Hp",
               border: OutlineInputBorder(),
             ),
           ),
@@ -43,7 +50,8 @@ class TugasFlutter4 extends StatelessWidget {
           // TEXTFIELD 3
           const TextField(
             decoration: InputDecoration(
-              labelText: "Input Email",
+              prefixIcon: Icon(Icons.email),
+              labelText: "Email",
               border: OutlineInputBorder(),
             ),
           ),
@@ -54,7 +62,8 @@ class TugasFlutter4 extends StatelessWidget {
           const TextField(
             maxLines: 3,
             decoration: InputDecoration(
-              labelText: "Input Alamat",
+              // prefixIcon: Icon(Icons.home),
+              labelText: "Alamat",
               border: OutlineInputBorder(),
             ),
           ),
