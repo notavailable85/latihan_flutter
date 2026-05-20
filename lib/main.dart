@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_flutter/figma_flutter_6.dart';
 import 'package:latihan_flutter/tugas_flutter_4.dart';
 import 'package:latihan_flutter/tugas_flutter_5.dart';
+import 'package:latihan_flutter/tugas_flutter_6.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TugasFlutter5(),
+      home: const FigmaFlutter6(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
