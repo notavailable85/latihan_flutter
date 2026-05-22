@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const FigmaFlutter6(),
+      home: const TugasFlutter6(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
