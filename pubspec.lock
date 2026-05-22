@@ -139,6 +139,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  roulette:
+    dependency: "direct main"
+    description:
+      name: roulette
+      sha256: b86c054821debab6d081ab637cd6ee266abdb33d77aec3c0086b425000b2afdf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.2"
   sky_engine:
     dependency: transitive
     description: flutter
