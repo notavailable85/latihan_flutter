@@ -1,166 +1,147 @@
-// main.dart
 import 'package:flutter/material.dart';
 
-// ================= LOGIN PAGE =================
-class TugasFlutter6 extends StatefulWidget {
-  const TugasFlutter6({super.key});
-
-  @override
-  State<TugasFlutter6> createState() => _TugasFlutter6State();
+void main() {
+  runApp(const MyApp());
 }
 
-class _TugasFlutter6State extends State<TugasFlutter6> {
-  // controller
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-
-  // state show/hide password
-  bool isHiddenPassword = true;
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  // ================= LOGIN FUNCTION =================
-  void login() {
-    String email = emailController.text;
-    String password = passwordController.text;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Email: $email\nPassword: $password')),
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Login UI',
+      theme: ThemeData(fontFamily: 'Poppins'),
+      home: const LoginPage(),
     );
   }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF5F7FB),
 
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  // ================= IMAGE =================
-                  Image.asset("assets/images/logo_safenesia.png", height: 180),
-
-                  const SizedBox(height: 30),
-
-                  // ================= TITLE =================
-                  const Text(
-                    'Welcome Back',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// IMAGE
+                Center(
+                  child: Image.asset(
+                    'assets/images/logo_safenesia.png',
+                    height: 280,
                   ),
+                ),
 
-                  const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
-                  const Text(
-                    'Login to your account',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
-                    ),
+                /// TITLE
+                const Text(
+                  "Welcome Back",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF111827),
                   ),
+                ),
 
-                  const SizedBox(height: 40),
+                const SizedBox(height: 8),
 
-                  // ================= EMAIL =================
-                  CustomTextField(
-                    controller: emailController,
-                    hintText: 'Email',
-                    prefixIcon: Icons.email_outlined,
-                    suffixIcon: Icons.check_circle,
-                    obscureText: false,
-                    onSuffixTap: () {},
+                const Text(
+                  "Please login to your account",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF6B7280),
                   ),
+                ),
 
-                  const SizedBox(height: 20),
+                const SizedBox(height: 40),
 
-                  // ================= PASSWORD =================
-                  CustomTextField(
-                    controller: passwordController,
-                    hintText: 'Password',
-                    prefixIcon: Icons.lock_outline,
+                /// EMAIL FIELD
+                const InputField(hintText: "Email", icon: Icons.email_outlined),
 
-                    suffixIcon: isHiddenPassword
-                        ? Icons.visibility_off
-                        : Icons.visibility,
+                const SizedBox(height: 20),
 
-                    obscureText: isHiddenPassword,
+                /// PASSWORD FIELD
+                InputField(
+                  hintText: "Password",
+                  icon: Icons.lock_outline,
+                  obscureText: isHidden,
 
-                    onSuffixTap: () {
+                  suffixIcon: IconButton(
+                    onPressed: () {
                       setState(() {
-                        isHiddenPassword = !isHiddenPassword;
+                        isHidden = !isHidden;
                       });
                     },
+                    icon: Icon(
+                      isHidden ? Icons.visibility_off : Icons.visibility,
+                    ),
                   ),
+                ),
 
-                  const SizedBox(height: 35),
+                const SizedBox(height: 16),
 
-                  // ================= BUTTON =================
-                  SizedBox(
-                    width: double.infinity,
-                    height: 55,
-
-                    child: ElevatedButton(
-                      onPressed: login,
-
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        elevation: 0,
-
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                /// FORGOT PASSWORD
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        color: Color(0xFF2563EB),
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
+                ),
 
-                  const SizedBox(height: 20),
+                const SizedBox(height: 24),
 
-                  // ================= FOOTER =================
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                /// LOGIN BUTTON
+                PrimaryButton(text: "Login", onPressed: () {}),
 
-                    children: const [
-                      Text(
-                        "Don't have an account? ",
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
+                const SizedBox(height: 30),
 
-                      Text(
-                        'Sign Up',
+                /// SIGN UP
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(color: Color(0xFF6B7280)),
+                    ),
+
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        "Sign Up",
                         style: TextStyle(
-                          fontSize: 14,
+                          color: Color(0xFF2563EB),
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
@@ -169,56 +150,95 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
   }
 }
 
-// ================= CUSTOM TEXTFIELD =================
-class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
+/// ======================================
+/// REUSABLE WIDGET INPUT FIELD
+/// ======================================
+class InputField extends StatelessWidget {
   final String hintText;
-  final IconData prefixIcon;
-  final IconData suffixIcon;
+  final IconData icon;
   final bool obscureText;
-  final VoidCallback onSuffixTap;
+  final Widget? suffixIcon;
 
-  const CustomTextField({
+  const InputField({
     super.key,
-    required this.controller,
     required this.hintText,
-    required this.prefixIcon,
-    required this.suffixIcon,
-    required this.obscureText,
-    required this.onSuffixTap,
+    required this.icon,
+    this.obscureText = false,
+    this.suffixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
       obscureText: obscureText,
 
       decoration: InputDecoration(
         hintText: hintText,
 
-        prefixIcon: Icon(prefixIcon),
+        hintStyle: const TextStyle(color: Color(0xFF9CA3AF)),
 
-        suffixIcon: IconButton(onPressed: onSuffixTap, icon: Icon(suffixIcon)),
+        prefixIcon: Icon(icon, color: const Color(0xFF6B7280)),
+
+        suffixIcon: suffixIcon,
 
         filled: true,
-        fillColor: const Color(0xFFF5F5F5),
+        fillColor: Colors.white,
 
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 18,
-          horizontal: 20,
-        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 18),
 
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide.none,
+        ),
 
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
           borderSide: BorderSide.none,
         ),
 
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
+          borderSide: const BorderSide(color: Color(0xFF2563EB), width: 1.5),
+        ),
+      ),
+    );
+  }
+}
 
-          borderSide: const BorderSide(color: Colors.blue, width: 2),
+/// ======================================
+/// REUSABLE WIDGET BUTTON
+/// ======================================
+class PrimaryButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const PrimaryButton({super.key, required this.text, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 55,
+
+      child: ElevatedButton(
+        onPressed: onPressed,
+
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF2563EB),
+          elevation: 0,
+
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+        ),
+
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );
