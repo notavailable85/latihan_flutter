@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_flutter/constant/app_drawer.dart';
 import 'package:latihan_flutter/figma_flutter_6.dart';
+import 'package:latihan_flutter/latihan/day_15/main_screen_drawer.dart';
+import 'package:latihan_flutter/latihan/day_13/splash_screen.dart';
 import 'package:latihan_flutter/tugas_flutter_4.dart';
 import 'package:latihan_flutter/tugas_flutter_5.dart';
 import 'package:latihan_flutter/tugas_flutter_6.dart';
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TugasFlutter6(),
+      home: const ScreenDrawer(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
