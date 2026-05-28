@@ -56,83 +56,87 @@ class _InputInteractivePageState extends State<InputInteractivePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
+    //bagian ini diganti jadi container
+    return Container(
+      color: isDarkMode ? Colors.grey[900] : Colors.white,
 
-      // APPBAR
-      appBar: AppBar(
-        title: const Text(
-          'Input Interaktif',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: isDarkMode ? Colors.black : Colors.blue,
-      ),
+      // backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
 
-      // DRAWER
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.blue),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.person, color: Colors.white, size: 50),
-                  SizedBox(height: 10),
-                  Text(
-                    'Menu Input',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      // // APPBAR
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Input Interaktif',
+      //     style: TextStyle(
+      //       fontSize: 20,
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: isDarkMode ? Colors.black : Colors.blue,
+      // ),
 
-            // LIST TILE
-            ListTile(
-              leading: const Icon(Icons.check_box),
-              title: const Text('Syarat & Ketentuan'),
-              onTap: () {},
-            ),
+      // // DRAWER
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: [
+      //       DrawerHeader(
+      //         decoration: const BoxDecoration(color: Colors.blue),
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           children: const [
+      //             Icon(Icons.person, color: Colors.white, size: 50),
+      //             SizedBox(height: 10),
+      //             Text(
+      //               'Menu Input',
+      //               style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 22,
+      //                 fontWeight: FontWeight.bold,
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
 
-            ListTile(
-              leading: const Icon(Icons.dark_mode),
-              title: const Text('Mode Tampilan'),
-              onTap: () {},
-            ),
+      //       // LIST TILE
+      //       ListTile(
+      //         leading: const Icon(Icons.check_box),
+      //         title: const Text('Syarat & Ketentuan'),
+      //         onTap: () {},
+      //       ),
 
-            ListTile(
-              leading: const Icon(Icons.category),
-              title: const Text('Kategori Produk'),
-              onTap: () {},
-            ),
+      //       ListTile(
+      //         leading: const Icon(Icons.dark_mode),
+      //         title: const Text('Mode Tampilan'),
+      //         onTap: () {},
+      //       ),
 
-            ListTile(
-              leading: const Icon(Icons.calendar_month),
-              title: const Text('Pilih Tanggal'),
-              onTap: () {},
-            ),
+      //       ListTile(
+      //         leading: const Icon(Icons.category),
+      //         title: const Text('Kategori Produk'),
+      //         onTap: () {},
+      //       ),
 
-            ListTile(
-              leading: const Icon(Icons.access_time),
-              title: const Text('Atur Pengingat'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      //       ListTile(
+      //         leading: const Icon(Icons.calendar_month),
+      //         title: const Text('Pilih Tanggal'),
+      //         onTap: () {},
+      //       ),
+
+      //       ListTile(
+      //         leading: const Icon(Icons.access_time),
+      //         title: const Text('Atur Pengingat'),
+      //         onTap: () {},
+      //       ),
+      //     ],
+      //   ),
+      // ),
 
       // BODY
-      body: SingleChildScrollView(
+      // body diganti child
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
 
