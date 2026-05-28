@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_flutter/tugas_flutter_10.dart';
 import 'package:latihan_flutter/tugas_flutter_7.dart';
 
 import 'package:latihan_flutter/tugas_flutter_8.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(
+      home: const RegisterPage(
         //cart
         // title: "Pelatihan K3 Umum",
         // category: "K3",
