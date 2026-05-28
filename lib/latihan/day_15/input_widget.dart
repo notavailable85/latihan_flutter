@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:latihan_flutter/constant/app_image.dart';
-import 'package:latihan_flutter/constant/button_icon.dart';
+import 'package:latihan_flutter/utils/button_icon.dart';
 
 class InputWidget extends StatefulWidget {
   const InputWidget({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/constant/hiragana_datawithmodel.dart';
+import 'package:latihan_flutter/data/hiragana_data_with_model.dart';
 
 class ListWithModelData extends StatefulWidget {
   const ListWithModelData({super.key});

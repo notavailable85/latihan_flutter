@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:latihan_flutter/constant/app_color.dart';
 import 'package:latihan_flutter/constant/app_image.dart';
-import 'package:latihan_flutter/constant/button_icon.dart';
-import 'package:latihan_flutter/constant/navigator.dart';
+import 'package:latihan_flutter/utils/button_icon.dart';
+import 'package:latihan_flutter/extension/navigator.dart';
 import 'package:latihan_flutter/latihan/day_15/main_screen_drawer.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 

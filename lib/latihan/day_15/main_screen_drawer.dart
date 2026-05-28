@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/constant/app_drawer.dart';
+import 'package:latihan_flutter/utils/app_drawer.dart';
 import 'package:latihan_flutter/latihan/day_15/input_widget.dart';
 import 'package:latihan_flutter/latihan/day_16/list_data.dart';
 import 'package:latihan_flutter/latihan/day_16/map_data.dart';

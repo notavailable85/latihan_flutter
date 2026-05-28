@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/constant/navigator.dart';
+import 'package:latihan_flutter/extension/navigator.dart';
 
 class TextRichDay13 extends StatelessWidget {
   const TextRichDay13({super.key});

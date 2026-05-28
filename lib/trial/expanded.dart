@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LatihanExpanded extends StatelessWidget {
-  const LatihanExpanded({super.key});
+class TrialExpanded extends StatelessWidget {
+  const TrialExpanded({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class LatihanExpanded extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                         Text("Following", style: TextStyle(fontSize: 16)),

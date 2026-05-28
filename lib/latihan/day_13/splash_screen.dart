@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latihan_flutter/constant/app_color.dart';
-import 'package:latihan_flutter/constant/navigator.dart';
+import 'package:latihan_flutter/extension/navigator.dart';
 import 'package:latihan_flutter/tugas_flutter_1.dart';
 
 class SplashScreen extends StatelessWidget {

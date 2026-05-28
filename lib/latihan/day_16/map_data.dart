@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/constant/hiragana_list.dart';
+import 'package:latihan_flutter/data/hiragana_list.dart';
 
 class MapData extends StatefulWidget {
   const MapData({super.key});

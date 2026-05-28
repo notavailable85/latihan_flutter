@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LatihanColumn extends StatelessWidget {
-  const LatihanColumn({super.key});
+class TrialColumnRow extends StatelessWidget {
+  const TrialColumnRow({super.key});
 
   @override
   Widget build(BuildContext context) {

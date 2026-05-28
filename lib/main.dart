@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/constant/app_drawer.dart';
-import 'package:latihan_flutter/figma_flutter_6.dart';
-import 'package:latihan_flutter/latihan/day_15/main_screen_drawer.dart';
-import 'package:latihan_flutter/latihan/day_13/splash_screen.dart';
-import 'package:latihan_flutter/tugas_flutter_4.dart';
-import 'package:latihan_flutter/tugas_flutter_5.dart';
-import 'package:latihan_flutter/tugas_flutter_6.dart';
+import 'package:latihan_flutter/safenesia/cart_page.dart';
+import 'package:latihan_flutter/safenesia/catalog_page.dart';
+import 'package:latihan_flutter/safenesia/detail_page.dart';
+import 'package:latihan_flutter/safenesia/messaging_page.dart';
+import 'package:latihan_flutter/safenesia/payment_page.dart';
+import 'package:latihan_flutter/safenesia/splashscreen_page.dart';
+import 'package:latihan_flutter/safenesia/support_page.dart';
+import 'package:latihan_flutter/safenesia/transaction_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,15 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ScreenDrawer(),
+      home: const SnSupportPage(
+        //cart
+        // title: "Pelatihan K3 Umum",
+        // category: "K3",
+        // price: "Rp 2.500.000",
+        // date: "10 Juni 2026",
+        //payment
+        // totalPrice: 5000000,
+      ),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }

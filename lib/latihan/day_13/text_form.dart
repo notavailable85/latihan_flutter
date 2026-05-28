@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:latihan_flutter/constant/navigator.dart';
+import 'package:latihan_flutter/extension/navigator.dart';
 import 'package:latihan_flutter/latihan/day_13/pop.dart';
 
 class TextFormDay13 extends StatefulWidget {
