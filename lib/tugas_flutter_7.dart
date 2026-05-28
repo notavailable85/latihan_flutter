@@ -1,47 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class InputInteractivePage extends StatefulWidget {
+  const InputInteractivePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Input Interaktif',
-      home: const InputInteraktifPage(),
-    );
-  }
+  State<InputInteractivePage> createState() => _InputInteractivePageState();
 }
 
-class InputInteraktifPage extends StatefulWidget {
-  const InputInteraktifPage({super.key});
-
-  @override
-  State<InputInteraktifPage> createState() => _InputInteraktifPageState();
-}
-
-class _InputInteraktifPageState extends State<InputInteraktifPage> {
-  // Checkbox
+class _InputInteractivePageState extends State<InputInteractivePage> {
+  // CHECKBOX
   bool isAgree = false;
 
-  // Switch
+  // SWITCH
   bool isDarkMode = false;
 
-  // Dropdown
+  // DROPDOWN
   String selectedCategory = 'Elektronik';
 
-  // Date
+  // DATE PICKER
   DateTime? selectedDate;
 
-  // Time
+  // TIME PICKER
   TimeOfDay? selectedTime;
 
-  // Fungsi pilih tanggal
+  // FUNCTION DATE PICKER
   Future<void> pickDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -57,7 +40,7 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
     }
   }
 
-  // Fungsi pilih waktu
+  // FUNCTION TIME PICKER
   Future<void> pickTime() async {
     TimeOfDay? pickedTime = await showTimePicker(
       context: context,
@@ -74,11 +57,18 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.grey[200],
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
 
       // APPBAR
       appBar: AppBar(
-        title: const Text('Input Interaktif'),
+        title: const Text(
+          'Input Interaktif',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: isDarkMode ? Colors.black : Colors.blue,
       ),
@@ -97,12 +87,17 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
                   SizedBox(height: 10),
                   Text(
                     'Menu Input',
-                    style: TextStyle(color: Colors.white, fontSize: 22),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
             ),
 
+            // LIST TILE
             ListTile(
               leading: const Icon(Icons.check_box),
               title: const Text('Syarat & Ketentuan'),
@@ -122,13 +117,13 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
             ),
 
             ListTile(
-              leading: const Icon(Icons.date_range),
+              leading: const Icon(Icons.calendar_month),
               title: const Text('Pilih Tanggal'),
               onTap: () {},
             ),
 
             ListTile(
-              leading: const Icon(Icons.alarm),
+              leading: const Icon(Icons.access_time),
               title: const Text('Atur Pengingat'),
               onTap: () {},
             ),
@@ -144,17 +139,29 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // =========================
+              // =================================
               // 1. CHECKBOX
-              // =========================
-              const Text(
+              // =================================
+              Text(
                 '1. Syarat & Ketentuan',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
+
+              const SizedBox(height: 10),
 
               CheckboxListTile(
                 value: isAgree,
-                title: const Text('Saya menyetujui persyaratan'),
+                title: Text(
+                  'Saya menyetujui persyaratan',
+                  style: TextStyle(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
+                ),
+                activeColor: Colors.green,
                 onChanged: (value) {
                   setState(() {
                     isAgree = value!;
@@ -174,17 +181,26 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
 
               const SizedBox(height: 25),
 
-              // =========================
+              // =================================
               // 2. SWITCH
-              // =========================
-              const Text(
+              // =================================
+              Text(
                 '2. Mode Tampilan',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
 
               SwitchListTile(
                 value: isDarkMode,
-                title: const Text('Aktifkan Mode Gelap'),
+                title: Text(
+                  'Aktifkan Mode Gelap',
+                  style: TextStyle(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
+                ),
                 onChanged: (value) {
                   setState(() {
                     isDarkMode = value;
@@ -194,18 +210,24 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
 
               const SizedBox(height: 25),
 
-              // =========================
-              // 3. DROPDOWN
-              // =========================
-              const Text(
+              // =================================
+              // 3. DROPDOWN BUTTON
+              // =================================
+              Text(
                 '3. Kategori Produk',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
+
+              const SizedBox(height: 10),
 
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: isDarkMode ? Colors.grey[800] : Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey),
                 ),
@@ -214,6 +236,13 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
                   value: selectedCategory,
                   isExpanded: true,
                   underline: const SizedBox(),
+
+                  dropdownColor: isDarkMode ? Colors.grey[800] : Colors.white,
+
+                  style: TextStyle(
+                    color: isDarkMode ? Colors.white : Colors.black,
+                    fontSize: 16,
+                  ),
 
                   items: const [
                     DropdownMenuItem(
@@ -237,18 +266,27 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
 
               Text(
                 'Anda memilih kategori: $selectedCategory',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
 
               const SizedBox(height: 25),
 
-              // =========================
+              // =================================
               // 4. DATE PICKER
-              // =========================
-              const Text(
+              // =================================
+              Text(
                 '4. Pilih Tanggal',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
+
+              const SizedBox(height: 10),
 
               ElevatedButton.icon(
                 onPressed: pickDate,
@@ -262,18 +300,27 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
                 selectedDate == null
                     ? 'Tanggal belum dipilih'
                     : 'Tanggal Lahir: ${DateFormat('dd-MM-yyyy').format(selectedDate!)}',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
 
               const SizedBox(height: 25),
 
-              // =========================
+              // =================================
               // 5. TIME PICKER
-              // =========================
-              const Text(
+              // =================================
+              Text(
                 '5. Atur Pengingat',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
+
+              const SizedBox(height: 10),
 
               ElevatedButton.icon(
                 onPressed: pickTime,
@@ -287,30 +334,34 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
                 selectedTime == null
                     ? 'Waktu belum dipilih'
                     : 'Pengingat diatur pukul: ${selectedTime!.format(context)}',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
 
               const SizedBox(height: 30),
 
-              // =========================
+              // =================================
               // RESULT AREA
-              // =========================
+              // =================================
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isDarkMode ? Colors.black54 : Colors.white,
+                  color: isDarkMode ? Colors.black54 : Colors.grey[200],
                   borderRadius: BorderRadius.circular(16),
                 ),
 
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Result Area',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
 
@@ -318,22 +369,41 @@ class _InputInteraktifPageState extends State<InputInteraktifPage> {
 
                     Text(
                       'Persetujuan: ${isAgree ? "Disetujui" : "Belum Disetujui"}',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
                     ),
 
-                    Text('Mode Gelap: ${isDarkMode ? "Aktif" : "Nonaktif"}'),
+                    Text(
+                      'Mode Gelap: ${isDarkMode ? "Aktif" : "Nonaktif"}',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
+                    ),
 
-                    Text('Kategori: $selectedCategory'),
+                    Text(
+                      'Kategori: $selectedCategory',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
+                    ),
 
                     Text(
                       selectedDate == null
                           ? 'Tanggal: Belum dipilih'
                           : 'Tanggal: ${DateFormat('dd-MM-yyyy').format(selectedDate!)}',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
                     ),
 
                     Text(
                       selectedTime == null
                           ? 'Pengingat: Belum diatur'
                           : 'Pengingat: ${selectedTime!.format(context)}',
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black,
+                      ),
                     ),
                   ],
                 ),

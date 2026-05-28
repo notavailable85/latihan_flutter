@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/cart_page.dart';
-import 'package:latihan_flutter/safenesia/catalog_page.dart';
-import 'package:latihan_flutter/safenesia/detail_page.dart';
-import 'package:latihan_flutter/safenesia/messaging_page.dart';
-import 'package:latihan_flutter/safenesia/payment_page.dart';
-import 'package:latihan_flutter/safenesia/splashscreen_page.dart';
-import 'package:latihan_flutter/safenesia/support_page.dart';
-import 'package:latihan_flutter/safenesia/transaction_page.dart';
+import 'package:latihan_flutter/tugas_flutter_7.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -38,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SnSupportPage(
+      home: const InputInteractivePage(
         //cart
         // title: "Pelatihan K3 Umum",
         // category: "K3",
