@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+// import 'package:intl/date_symbol_data_file.dart';
+import 'package:latihan_flutter/latihan/day_19/database/preference_handler.dart';
+import 'package:latihan_flutter/safenesia/splashscreen_page.dart';
 import 'package:latihan_flutter/tugas_flutter_10.dart';
 import 'package:latihan_flutter/tugas_flutter_7.dart';
 
 import 'package:latihan_flutter/tugas_flutter_8.dart';
 import 'package:latihan_flutter/tugas_flutter_9.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //ketika ada async maka dia akan jalankan await dulu
+  await initializeDateFormatting('id_ID', null);
+  await PreferenceHandler.init();
   runApp(const MyApp());
 }
 
@@ -26,7 +34,7 @@ class MyApp extends StatelessWidget {
         // try changing the seedColor in the colorScheme below to Colors.green
         // and then invoke "hot reload" (save your changes or press the "hot
         // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
+        // the command line to start the app
         //
         // Notice that the counter didn't reset back to zero; the application
         // state is not lost during the reload. To reset the state, use hot
@@ -36,7 +44,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const RegisterPage(
+      home: const SnSplashScreenPage(
         //cart
         // title: "Pelatihan K3 Umum",
         // category: "K3",
