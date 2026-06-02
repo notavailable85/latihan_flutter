@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/tugas_flutter_11/preference_handler.dart';
-import 'package:latihan_flutter/tugas_flutter_11/splash_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_11a/preference_handler.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_11a/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

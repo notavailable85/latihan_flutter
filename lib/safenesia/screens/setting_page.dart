@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/editprofile_page.dart';
+import 'package:latihan_flutter/safenesia/screens/editprofile_page.dart';
 
 class SnSettingPage extends StatefulWidget {
   const SnSettingPage({super.key});

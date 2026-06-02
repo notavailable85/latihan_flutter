@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/setting_page.dart';
+import 'package:latihan_flutter/safenesia/screens/setting_page.dart';
 
 class SnProfilePage extends StatelessWidget {
   const SnProfilePage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/tugas_flutter_11/preference_handler.dart';
-import 'package:latihan_flutter/tugas_flutter_11/login_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_11a/preference_handler.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_11a/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

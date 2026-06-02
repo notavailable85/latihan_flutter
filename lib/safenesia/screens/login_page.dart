@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/forgotpassword_page.dart';
-import 'package:latihan_flutter/safenesia/home_page.dart';
-import 'package:latihan_flutter/safenesia/register_page.dart';
+import 'package:latihan_flutter/safenesia/screens/forgotpassword_page.dart';
+import 'package:latihan_flutter/safenesia/screens/home_page.dart';
+import 'package:latihan_flutter/safenesia/screens/register_page.dart';
 
 class SnLoginPage extends StatefulWidget {
   const SnLoginPage({super.key});

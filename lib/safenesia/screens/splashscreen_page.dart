@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/onboarding_page.dart';
+import 'package:latihan_flutter/safenesia/screens/onboarding_page.dart';
 import 'package:latihan_flutter/safenesia/additional/shared_preference.dart';
-import 'package:latihan_flutter/safenesia/home_page.dart';
-import 'package:latihan_flutter/safenesia/login_page.dart';
+import 'package:latihan_flutter/safenesia/screens/home_page.dart';
+import 'package:latihan_flutter/safenesia/screens/login_page.dart';
 
 class SnSplashScreenPage extends StatefulWidget {
   const SnSplashScreenPage({super.key});

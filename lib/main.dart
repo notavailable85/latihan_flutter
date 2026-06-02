@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // import 'package:intl/date_symbol_data_file.dart';
 import 'package:latihan_flutter/latihan/day_19/database/preference_handler.dart';
-import 'package:latihan_flutter/safenesia/splashscreen_page.dart';
-import 'package:latihan_flutter/tugas_flutter_10.dart';
-import 'package:latihan_flutter/tugas_flutter_7.dart';
+import 'package:latihan_flutter/safenesia/screens/splashscreen_page.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_10.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_7.dart';
 
-import 'package:latihan_flutter/tugas_flutter_8.dart';
-import 'package:latihan_flutter/tugas_flutter_9.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_8.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_9.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

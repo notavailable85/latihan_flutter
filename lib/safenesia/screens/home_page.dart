@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/catalog_page.dart';
-import 'package:latihan_flutter/safenesia/notification_page.dart';
-import 'package:latihan_flutter/safenesia/profile_page.dart';
-import 'package:latihan_flutter/safenesia/search_page.dart';
+import 'package:latihan_flutter/safenesia/screens/catalog_page.dart';
+import 'package:latihan_flutter/safenesia/screens/notification_page.dart';
+import 'package:latihan_flutter/safenesia/screens/profile_page.dart';
+import 'package:latihan_flutter/safenesia/screens/search_page.dart';
 
 class SnHomePage extends StatefulWidget {
   const SnHomePage({super.key});

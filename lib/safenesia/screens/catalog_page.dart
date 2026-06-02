@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_flutter/safenesia/detail_page.dart';
+import 'package:latihan_flutter/safenesia/screens/detail_page.dart';
 
 class SnCatalogPage extends StatefulWidget {
   const SnCatalogPage({super.key});
