@@ -9,5 +9,5 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @GET('/v4/anime')
-  Future<List<AnimeModels>> getAllPosts();
+  Future<AnimeModels> getAllPosts();
 }

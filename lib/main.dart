@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:latihan_flutter/latihan/day_19/database/preference_handler.dart';
 import 'package:latihan_flutter/safenesia/screens/splashscreen_page.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_10.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_14/views/main_screen.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_7.dart';
 
 import 'package:latihan_flutter/tugas/tugas_flutter_8.dart';
@@ -44,15 +45,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SnSplashScreenPage(
-        //cart
-        // title: "Pelatihan K3 Umum",
-        // category: "K3",
-        // price: "Rp 2.500.000",
-        // date: "10 Juni 2026",
-        //payment
-        // totalPrice: 5000000,
-      ),
+      home: const MainScreen(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
