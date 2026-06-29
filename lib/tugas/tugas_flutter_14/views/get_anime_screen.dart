@@ -3,6 +3,7 @@ import 'package:latihan_flutter/tugas/tugas_flutter_14/models/anime_models.dart'
 import 'package:latihan_flutter/tugas/tugas_flutter_14/services/api_services.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_14/services/dio_client.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_14/views/detail_anime_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_14/models/bookmark_manager.dart';
 
 class GetAnimeScreen extends StatefulWidget {
   const GetAnimeScreen({super.key});
@@ -15,6 +16,13 @@ class _GetAnimeScreenState extends State<GetAnimeScreen> {
   late final ApiService _apiService;
   late Future<AnimeModels> _animeFuture;
   String _searchQuery = '';
+  
+  // Filter states
+  List<DatumType> _selectedTypes = [];
+  List<Rating> _selectedRatings = [];
+  List<Source> _selectedSources = [];
+  String? _selectedGenre;
+  bool _sortByPopularity = false;
 
   @override
   void initState() {
@@ -75,9 +83,28 @@ class _GetAnimeScreenState extends State<GetAnimeScreen> {
           }
 
           final animes = snapshot.data!.data;
-          final filteredAnimes = animes.where((anime) {
-            return anime.title.toLowerCase().contains(_searchQuery.toLowerCase());
+          
+          final uniqueGenres = <String>{};
+          for (var anime in animes) {
+            for (var genre in anime.genres) {
+              uniqueGenres.add(genre.name);
+            }
+          }
+          final genreList = uniqueGenres.toList()..sort();
+
+          var filteredAnimes = animes.where((anime) {
+            final matchSearch = anime.title.toLowerCase().contains(_searchQuery.toLowerCase());
+            final matchType = _selectedTypes.isEmpty || _selectedTypes.contains(anime.type);
+            final matchRating = _selectedRatings.isEmpty || _selectedRatings.contains(anime.rating);
+            final matchSource = _selectedSources.isEmpty || _selectedSources.contains(anime.source);
+            final matchGenre = _selectedGenre == null || anime.genres.any((g) => g.name == _selectedGenre);
+
+            return matchSearch && matchType && matchRating && matchSource && matchGenre;
           }).toList();
+
+          if (_sortByPopularity) {
+            filteredAnimes.sort((a, b) => a.popularity.compareTo(b.popularity));
+          }
 
           return RefreshIndicator(
             onRefresh: () async => _refreshAnime(),
@@ -85,20 +112,37 @@ class _GetAnimeScreenState extends State<GetAnimeScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Cari anime...',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Cari anime...',
+                            prefixIcon: const Icon(Icons.search),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _searchQuery = value;
+                            });
+                          },
+                        ),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _searchQuery = value;
-                      });
-                    },
+                      const SizedBox(width: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.filter_list, color: Colors.white),
+                          onPressed: () => _showFilterModal(context, genreList),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -147,32 +191,57 @@ class _GetAnimeScreenState extends State<GetAnimeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(
+                          child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                anime.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      anime.title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          size: 14,
+                                          color: Colors.amber,
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          anime.score.toString(),
+                                          style: const TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.star,
-                                    size: 14,
-                                    color: Colors.amber,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    anime.score.toString(),
-                                    style: const TextStyle(fontSize: 12),
-                                  ),
-                                ],
+                              ValueListenableBuilder<List<Datum>>(
+                                valueListenable: BookmarkManager.bookmarksNotifier,
+                                builder: (context, bookmarks, child) {
+                                  final isBookmarked = BookmarkManager.isBookmarked(anime);
+                                  return IconButton(
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                    icon: Icon(
+                                      isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                                      color: isBookmarked ? Colors.blueAccent : Colors.grey,
+                                      size: 24,
+                                    ),
+                                    onPressed: () {
+                                      BookmarkManager.toggleBookmark(anime);
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -189,6 +258,172 @@ class _GetAnimeScreenState extends State<GetAnimeScreen> {
     );
   },
       ),
+    );
+  }
+
+  void _showFilterModal(BuildContext context, List<String> availableGenres) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                left: 16,
+                right: 16,
+                top: 16,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Filter Anime', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 16),
+                    
+                    // Type Filter
+                    const Text('Type', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Wrap(
+                      spacing: 8,
+                      children: DatumType.values.map((type) {
+                        return FilterChip(
+                          label: Text(type.name),
+                          selected: _selectedTypes.contains(type),
+                          onSelected: (selected) {
+                            setModalState(() {
+                              if (selected) {
+                                _selectedTypes.add(type);
+                              } else {
+                                _selectedTypes.remove(type);
+                              }
+                            });
+                            setState(() {}); // Update main UI
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Rating Filter
+                    const Text('Rating', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Wrap(
+                      spacing: 8,
+                      children: Rating.values.map((rating) {
+                        return FilterChip(
+                          label: Text(rating.name),
+                          selected: _selectedRatings.contains(rating),
+                          onSelected: (selected) {
+                            setModalState(() {
+                              if (selected) {
+                                _selectedRatings.add(rating);
+                              } else {
+                                _selectedRatings.remove(rating);
+                              }
+                            });
+                            setState(() {}); // Update main UI
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Source Filter
+                    const Text('Source', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Wrap(
+                      spacing: 8,
+                      children: Source.values.map((source) {
+                        return FilterChip(
+                          label: Text(source.name),
+                          selected: _selectedSources.contains(source),
+                          onSelected: (selected) {
+                            setModalState(() {
+                              if (selected) {
+                                _selectedSources.add(source);
+                              } else {
+                                _selectedSources.remove(source);
+                              }
+                            });
+                            setState(() {}); // Update main UI
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Genres Filter
+                    const Text('Genre', style: TextStyle(fontWeight: FontWeight.bold)),
+                    DropdownButton<String>(
+                      isExpanded: true,
+                      hint: const Text('Pilih Genre'),
+                      value: _selectedGenre,
+                      items: [
+                        const DropdownMenuItem<String>(
+                          value: null,
+                          child: Text('Semua Genre'),
+                        ),
+                        ...availableGenres.map((genre) {
+                          return DropdownMenuItem<String>(
+                            value: genre,
+                            child: Text(genre),
+                          );
+                        }),
+                      ],
+                      onChanged: (value) {
+                        setModalState(() {
+                          _selectedGenre = value;
+                        });
+                        setState(() {}); // Update main UI
+                      },
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Popularity Sort
+                    SwitchListTile(
+                      title: const Text('Urutkan Berdasarkan Popularitas'),
+                      contentPadding: EdgeInsets.zero,
+                      value: _sortByPopularity,
+                      onChanged: (value) {
+                        setModalState(() {
+                          _sortByPopularity = value;
+                        });
+                        setState(() {}); // Update main UI
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setModalState(() {
+                            _selectedTypes.clear();
+                            _selectedRatings.clear();
+                            _selectedSources.clear();
+                            _selectedGenre = null;
+                            _sortByPopularity = false;
+                          });
+                          setState(() {});
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text('Reset Filter'),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
