@@ -4,7 +4,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:latihan_flutter/latihan/day_19/database/preference_handler.dart';
 import 'package:latihan_flutter/safenesia/screens/splashscreen_page.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_10.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_11a/login_screen.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_14/views/main_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/views/register_screen.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_7.dart';
 
 import 'package:latihan_flutter/tugas/tugas_flutter_8.dart';
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MainScreen(),
+      home: const RegisterScreen(),
       //       const MyHomePage(title: 'Flutter Demo Home Page'),
       //     );
       //   }
