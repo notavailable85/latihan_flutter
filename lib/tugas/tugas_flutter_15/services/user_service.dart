@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'user_service.g.dart';
 
-@RestApi(baseUrl: 'https://absensib1.mobileprojp.com')
+@RestApi(baseUrl: 'https://appabsensi.mobileprojp.com')
 abstract class UserService {
   factory UserService(Dio dio, {String baseUrl}) = _UserService;
 

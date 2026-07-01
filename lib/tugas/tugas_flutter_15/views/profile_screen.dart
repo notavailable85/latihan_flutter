@@ -6,6 +6,7 @@ import 'package:latihan_flutter/tugas/tugas_flutter_15/services/auth_service.dar
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/dio.client.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/views/edit_profile_screen.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/views/login_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/widgets/glassmorphism_widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -77,107 +78,124 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Profil'),
+        title: const Text('Profil', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.white),
             onPressed: _logout,
             tooltip: 'Logout',
           ),
         ],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _errorMsg != null
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(_errorMsg!, style: const TextStyle(color: Colors.red)),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: _fetchProfile,
-                        child: const Text('Coba Lagi'),
-                      ),
-                      const SizedBox(height: 16),
-                      TextButton(
-                        onPressed: _logout,
-                        child: const Text('Ke Halaman Login'),
-                      )
-                    ],
-                  ),
-                )
-              : _user == null
-                  ? const Center(child: Text('Data profil tidak tersedia.'))
-                  : RefreshIndicator(
-                      onRefresh: _fetchProfile,
-                      child: ListView(
-                        padding: const EdgeInsets.all(16.0),
-                        children: [
-                          Center(
-                            child: CircleAvatar(
-                              radius: 60,
-                              backgroundColor: Colors.grey[300],
-                              backgroundImage: _user!.profilePhoto != null &&
-                                      _user!.profilePhoto!.isNotEmpty
-                                  ? NetworkImage(_user!.profilePhoto!)
-                                  : null,
-                              child: _user!.profilePhoto == null ||
-                                      _user!.profilePhoto!.isEmpty
-                                  ? const Icon(Icons.person,
-                                      size: 60, color: Colors.white)
-                                  : null,
-                            ),
-                          ),
-                          const SizedBox(height: 24),
-                          Card(
-                            elevation: 2,
-                            child: ListTile(
-                              leading: const Icon(Icons.person),
-                              title: const Text('Nama'),
-                              subtitle: Text(_user!.name ?? '-'),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Card(
-                            elevation: 2,
-                            child: ListTile(
-                              leading: const Icon(Icons.email),
-                              title: const Text('Email'),
-                              subtitle: Text(_user!.email ?? '-'),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Card(
-                            elevation: 2,
-                            child: ListTile(
-                              leading: const Icon(Icons.transgender),
-                              title: const Text('Jenis Kelamin'),
-                              subtitle: Text(_user!.jenisKelamin == 'L'
-                                  ? 'Laki-laki'
-                                  : _user!.jenisKelamin == 'P'
-                                      ? 'Perempuan'
-                                      : '-'),
-                            ),
-                          ),
-                        ],
-                      ),
+      body: GlassBackground(
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator(color: Colors.white))
+            : _errorMsg != null
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(_errorMsg!, style: const TextStyle(color: Colors.redAccent)),
+                        const SizedBox(height: 16),
+                        GlassButton(
+                          onPressed: _fetchProfile,
+                          child: const Text('Coba Lagi', style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                        const SizedBox(height: 16),
+                        TextButton(
+                          onPressed: _logout,
+                          child: const Text('Ke Halaman Login', style: TextStyle(color: Colors.white70)),
+                        )
+                      ],
                     ),
+                  )
+                : _user == null
+                    ? const Center(child: Text('Data profil tidak tersedia.', style: TextStyle(color: Colors.white)))
+                    : RefreshIndicator(
+                        onRefresh: _fetchProfile,
+                        color: Colors.white,
+                        backgroundColor: Colors.pinkAccent,
+                        child: ListView(
+                          padding: const EdgeInsets.only(top: 100.0, bottom: 100.0, left: 16.0, right: 16.0),
+                          children: [
+                            Center(
+                              child: CircleAvatar(
+                                radius: 60,
+                                backgroundColor: Colors.white.withOpacity(0.2),
+                                backgroundImage: _user!.profilePhoto != null &&
+                                        _user!.profilePhoto!.isNotEmpty
+                                    ? NetworkImage(_user!.profilePhoto!)
+                                    : null,
+                                child: _user!.profilePhoto == null ||
+                                        _user!.profilePhoto!.isEmpty
+                                    ? const Icon(Icons.person,
+                                        size: 60, color: Colors.white)
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(height: 24),
+                            GlassContainer(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              child: ListTile(
+                                leading: const Icon(Icons.person, color: Colors.white),
+                                title: const Text('Nama', style: TextStyle(color: Colors.white70)),
+                                subtitle: Text(_user!.name ?? '-', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                              ),
+                            ),
+                            GlassContainer(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              child: ListTile(
+                                leading: const Icon(Icons.email, color: Colors.white),
+                                title: const Text('Email', style: TextStyle(color: Colors.white70)),
+                                subtitle: Text(_user!.email ?? '-', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                              ),
+                            ),
+                            GlassContainer(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              child: ListTile(
+                                leading: const Icon(Icons.transgender, color: Colors.white),
+                                title: const Text('Jenis Kelamin', style: TextStyle(color: Colors.white70)),
+                                subtitle: Text(_user!.jenisKelamin == 'L'
+                                    ? 'Laki-laki'
+                                    : _user!.jenisKelamin == 'P'
+                                        ? 'Perempuan'
+                                        : '-', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+      ),
       floatingActionButton: _user != null
-          ? FloatingActionButton(
-              onPressed: () async {
-                final result = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EditProfileScreen(user: _user!),
-                  ),
-                );
-                if (result == true) {
-                  _fetchProfile();
-                }
-              },
-              child: const Icon(Icons.edit),
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 80.0),
+              child: FloatingActionButton(
+                backgroundColor: Colors.white.withOpacity(0.3),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  side: BorderSide(color: Colors.white.withOpacity(0.5)),
+                ),
+                onPressed: () async {
+                  final result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProfileScreen(user: _user!),
+                    ),
+                  );
+                  if (result == true) {
+                    _fetchProfile();
+                  }
+                },
+                child: const Icon(Icons.edit, color: Colors.white),
+              ),
             )
           : null,
     );

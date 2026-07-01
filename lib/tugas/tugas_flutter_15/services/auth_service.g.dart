@@ -12,7 +12,7 @@ part of 'auth_service.dart';
 
 class _AuthService implements AuthService {
   _AuthService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://absensib1.mobileprojp.com';
+    baseUrl ??= 'https://appabsensi.mobileprojp.com';
   }
 
   final Dio _dio;

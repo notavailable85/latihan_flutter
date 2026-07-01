@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/models/user_model.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/auth_service.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/dio.client.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/widgets/glassmorphism_widgets.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final User user;
@@ -115,90 +116,122 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Profil')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: _pickImage,
-                child: Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: _image != null
-                          ? FileImage(_image!)
-                          : (widget.user.profilePhoto != null && widget.user.profilePhoto!.isNotEmpty)
-                              ? NetworkImage(widget.user.profilePhoto!) as ImageProvider
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Edit Profil', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      body: GlassBackground(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 100.0, bottom: 24.0, left: 16.0, right: 16.0),
+          child: GlassContainer(
+            padding: const EdgeInsets.all(24.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: _pickImage,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white.withOpacity(0.2),
+                          backgroundImage: _image != null
+                              ? FileImage(_image!)
+                              : (widget.user.profilePhoto != null && widget.user.profilePhoto!.isNotEmpty)
+                                  ? NetworkImage(widget.user.profilePhoto!) as ImageProvider
+                                  : null,
+                          child: (_image == null && (widget.user.profilePhoto == null || widget.user.profilePhoto!.isEmpty))
+                              ? const Icon(Icons.person, size: 50, color: Colors.white)
                               : null,
-                      child: (_image == null && (widget.user.profilePhoto == null || widget.user.profilePhoto!.isEmpty))
-                          ? const Icon(Icons.person, size: 50, color: Colors.white)
-                          : null,
+                        ),
+                        CircleAvatar(
+                          radius: 18,
+                          backgroundColor: Colors.pinkAccent.withOpacity(0.8),
+                          child: const Icon(Icons.camera_alt, color: Colors.white, size: 18),
+                        )
+                      ],
                     ),
-                    const CircleAvatar(
-                      radius: 18,
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.camera_alt, color: Colors.white, size: 18),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              TextFormField(
-                controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder()),
-                validator: (value) => value!.isEmpty ? 'Nama wajib diisi' : null,
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) return 'Email wajib diisi';
-                  if (!value.contains('@')) return 'Format email tidak valid';
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _passwordController,
-                decoration: const InputDecoration(
-                    labelText: 'Password (Opsional)', 
-                    border: OutlineInputBorder(),
-                    helperText: 'Isi jika ingin mengubah password'
-                ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
-                initialValue: _jenisKelamin,
-                decoration: const InputDecoration(labelText: 'Jenis Kelamin', border: OutlineInputBorder()),
-                items: const [
-                  DropdownMenuItem(value: 'L', child: Text('Laki-laki')),
-                  DropdownMenuItem(value: 'P', child: Text('Perempuan')),
+                  ),
+                  const SizedBox(height: 32),
+                  GlassTextField(
+                    controller: _nameController,
+                    labelText: 'Name',
+                    prefixIcon: Icons.person_outline,
+                    validator: (value) => value!.isEmpty ? 'Nama wajib diisi' : null,
+                  ),
+                  const SizedBox(height: 16),
+                  GlassTextField(
+                    controller: _emailController,
+                    labelText: 'Email',
+                    prefixIcon: Icons.email_outlined,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) return 'Email wajib diisi';
+                      if (!value.contains('@')) return 'Format email tidak valid';
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  GlassTextField(
+                    controller: _passwordController,
+                    labelText: 'Password (Opsional)',
+                    prefixIcon: Icons.lock_outline,
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 8),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Isi jika ingin mengubah password', style: TextStyle(color: Colors.white54, fontSize: 12)),
+                  ),
+                  const SizedBox(height: 16),
+                  DropdownButtonFormField<String>(
+                    initialValue: _jenisKelamin,
+                    dropdownColor: const Color(0xFFE94057),
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      labelText: 'Jenis Kelamin',
+                      labelStyle: const TextStyle(color: Colors.white70),
+                      prefixIcon: const Icon(Icons.people_outline, color: Colors.white70),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(color: Colors.white.withOpacity(0.3)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(color: Colors.white, width: 2),
+                      ),
+                    ),
+                    items: const [
+                      DropdownMenuItem(value: 'L', child: Text('Laki-laki')),
+                      DropdownMenuItem(value: 'P', child: Text('Perempuan')),
+                    ],
+                    onChanged: (value) {
+                      if (value != null) {
+                        setState(() {
+                          _jenisKelamin = value;
+                        });
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 32),
+                  SizedBox(
+                    width: double.infinity,
+                    child: GlassButton(
+                      onPressed: _isLoading ? null : _updateProfile,
+                      isLoading: _isLoading,
+                      child: const Text('Simpan', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
                 ],
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      _jenisKelamin = value;
-                    });
-                  }
-                },
               ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _updateProfile,
-                  child: _isLoading ? const CircularProgressIndicator() : const Text('Simpan'),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

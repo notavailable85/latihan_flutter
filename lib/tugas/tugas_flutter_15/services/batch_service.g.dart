@@ -12,7 +12,7 @@ part of 'batch_service.dart';
 
 class _BatchService implements BatchService {
   _BatchService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://absensib1.mobileprojp.com';
+    baseUrl ??= 'https://appabsensi.mobileprojp.com';
   }
 
   final Dio _dio;

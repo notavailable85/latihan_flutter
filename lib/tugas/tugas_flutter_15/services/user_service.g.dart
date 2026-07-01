@@ -12,7 +12,7 @@ part of 'user_service.dart';
 
 class _UserService implements UserService {
   _UserService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://absensib1.mobileprojp.com';
+    baseUrl ??= 'https://appabsensi.mobileprojp.com';
   }
 
   final Dio _dio;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/models/user_model.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/dio.client.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/user_service.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/widgets/glassmorphism_widgets.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
@@ -52,25 +53,38 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Daftar Pengguna')),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _errorMsg != null
-              ? Center(child: Text(_errorMsg!, style: const TextStyle(color: Colors.red)))
-              : ListView.builder(
-                  itemCount: _users.length,
-                  itemBuilder: (context, index) {
-                    final user = _users[index];
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: user.profilePhoto != null ? NetworkImage(user.profilePhoto!) : null,
-                        child: user.profilePhoto == null ? const Icon(Icons.person) : null,
-                      ),
-                      title: Text(user.name ?? '-'),
-                      subtitle: Text(user.email ?? '-'),
-                    );
-                  },
-                ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Daftar Pengguna', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: GlassBackground(
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator(color: Colors.white))
+            : _errorMsg != null
+                ? Center(child: Text(_errorMsg!, style: const TextStyle(color: Colors.redAccent)))
+                : ListView.builder(
+                    padding: const EdgeInsets.only(top: 100, bottom: 100, left: 16, right: 16),
+                    itemCount: _users.length,
+                    itemBuilder: (context, index) {
+                      final user = _users[index];
+                      return GlassContainer(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.white.withOpacity(0.2),
+                            backgroundImage: user.profilePhoto != null ? NetworkImage(user.profilePhoto!) : null,
+                            child: user.profilePhoto == null ? const Icon(Icons.person, color: Colors.white) : null,
+                          ),
+                          title: Text(user.name ?? '-', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                          subtitle: Text(user.email ?? '-', style: const TextStyle(color: Colors.white70)),
+                        ),
+                      );
+                    },
+                  ),
+      ),
     );
   }
 }

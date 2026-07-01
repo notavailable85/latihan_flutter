@@ -35,8 +35,8 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
 User _$UserFromJson(Map<String, dynamic> json) => User(
   name: json['name'] as String?,
   email: json['email'] as String?,
-  batchId: (json['batch_id'] as num?)?.toInt(),
-  trainingId: (json['training_id'] as num?)?.toInt(),
+  batchId: json['batch_id'],
+  trainingId: json['training_id'],
   jenisKelamin: json['jenis_kelamin'] as String?,
   profilePhoto: json['profile_photo'],
   updatedAt: json['updated_at'] == null

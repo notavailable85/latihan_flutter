@@ -5,6 +5,7 @@ import 'package:latihan_flutter/tugas/tugas_flutter_15/services/auth_service.dar
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/dio.client.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/views/home_screen.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/views/register_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/widgets/glassmorphism_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -81,52 +82,70 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
-              const Icon(Icons.lock, size: 100, color: Colors.blue),
-              const SizedBox(height: 32),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) return 'Email wajib diisi';
-                  if (!value.contains('@')) return 'Format email tidak valid';
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _passwordController,
-                decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
-                obscureText: true,
-                validator: (value) => value!.isEmpty ? 'Password wajib diisi' : null,
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _login,
-                  child: _isLoading ? const CircularProgressIndicator() : const Text('Login'),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Login', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: GlassBackground(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24.0),
+            child: GlassContainer(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 20),
+                    const Icon(Icons.lock_outline, size: 80, color: Colors.white),
+                    const SizedBox(height: 32),
+                    GlassTextField(
+                      controller: _emailController,
+                      labelText: 'Email',
+                      prefixIcon: Icons.email_outlined,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) return 'Email wajib diisi';
+                        if (!value.contains('@')) return 'Format email tidak valid';
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    GlassTextField(
+                      controller: _passwordController,
+                      labelText: 'Password',
+                      prefixIcon: Icons.lock_outline,
+                      obscureText: true,
+                      validator: (value) => value!.isEmpty ? 'Password wajib diisi' : null,
+                    ),
+                    const SizedBox(height: 32),
+                    SizedBox(
+                      width: double.infinity,
+                      child: GlassButton(
+                        onPressed: _isLoading ? null : _login,
+                        isLoading: _isLoading,
+                        child: const Text('Login', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                        );
+                      },
+                      child: const Text(
+                        'Belum punya akun? Register di sini',
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisterScreen()),
-                  );
-                },
-                child: const Text('Belum punya akun? Register di sini'),
-              )
-            ],
+            ),
           ),
         ),
       ),

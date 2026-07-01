@@ -4,6 +4,7 @@ import 'package:latihan_flutter/tugas/tugas_flutter_15/models/user_model.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/dio.client.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/services/training_service.dart';
 import 'package:latihan_flutter/tugas/tugas_flutter_15/views/training_detail_screen.dart';
+import 'package:latihan_flutter/tugas/tugas_flutter_15/widgets/glassmorphism_widgets.dart';
 
 class TrainingsScreen extends StatefulWidget {
   const TrainingsScreen({super.key});
@@ -53,32 +54,41 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Daftar Pelatihan')),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _errorMsg != null
-              ? Center(child: Text(_errorMsg!, style: const TextStyle(color: Colors.red)))
-              : ListView.builder(
-                  itemCount: _trainings.length,
-                  itemBuilder: (context, index) {
-                    final training = _trainings[index];
-                    return Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: ListTile(
-                        title: Text(training.title ?? '-'),
-                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TrainingDetailScreen(id: training.id!),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Daftar Pelatihan', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: GlassBackground(
+        child: _isLoading
+            ? const Center(child: CircularProgressIndicator(color: Colors.white))
+            : _errorMsg != null
+                ? Center(child: Text(_errorMsg!, style: const TextStyle(color: Colors.redAccent)))
+                : ListView.builder(
+                    padding: const EdgeInsets.only(top: 100, bottom: 100, left: 16, right: 16),
+                    itemCount: _trainings.length,
+                    itemBuilder: (context, index) {
+                      final training = _trainings[index];
+                      return GlassContainer(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        child: ListTile(
+                          title: Text(training.title ?? '-', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                          trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TrainingDetailScreen(id: training.id!),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+      ),
     );
   }
 }

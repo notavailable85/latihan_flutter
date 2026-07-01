@@ -5,7 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'auth_service.g.dart';
 
-@RestApi(baseUrl: 'https://absensib1.mobileprojp.com')
+@RestApi(baseUrl: 'https://appabsensi.mobileprojp.com')
 abstract class AuthService {
   factory AuthService(Dio dio, {String baseUrl}) = _AuthService;
 

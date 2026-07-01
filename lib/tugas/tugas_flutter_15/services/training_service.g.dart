@@ -12,7 +12,7 @@ part of 'training_service.dart';
 
 class _TrainingService implements TrainingService {
   _TrainingService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://absensib1.mobileprojp.com';
+    baseUrl ??= 'https://appabsensi.mobileprojp.com';
   }
 
   final Dio _dio;

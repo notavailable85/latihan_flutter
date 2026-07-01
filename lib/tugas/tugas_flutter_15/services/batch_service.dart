@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'batch_service.g.dart';
 
-@RestApi(baseUrl: 'https://absensib1.mobileprojp.com')
+@RestApi(baseUrl: 'https://appabsensi.mobileprojp.com')
 abstract class BatchService {
   factory BatchService(Dio dio, {String baseUrl}) = _BatchService;
 

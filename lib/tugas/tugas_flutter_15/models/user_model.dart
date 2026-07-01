@@ -49,9 +49,9 @@ class User {
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "batch_id")
-  int? batchId;
+  dynamic batchId;
   @JsonKey(name: "training_id")
-  int? trainingId;
+  dynamic trainingId;
   @JsonKey(name: "jenis_kelamin")
   String? jenisKelamin;
   @JsonKey(name: "profile_photo")
